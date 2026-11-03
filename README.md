@@ -63,14 +63,21 @@ Para fixar uma das versões, é só o pop-up apontar para o endereço dela. Para
 deixar o claro como padrão, trocar a condição do script para
 `t !== 'escuro'`.
 
-O claro leva uma camada de efeito que o escuro não tem, porque fundo branco
-aguenta mais: malha de pontos com máscara radial, três orbes de cor
-desfocados em órbita lenta, vidro na barra, nas pílulas do índice e no
-fecho, numeral preenchido em degradê com deriva na rolagem
-(`animation-timeline: view()`), varredura especular cruzando cada quadro de
-vídeo, foco seguindo o cursor e lustro nos botões. Tudo em
-`translate`/`scale`/`opacity`, e o foco do cursor só escreve no estilo uma
-vez por quadro de animação.
+As duas versões compartilham a mesma camada de efeito: malha de pontos com
+máscara radial, três orbes de cor desfocados em órbita lenta, vidro na
+barra, nas pílulas do índice e no fecho, numeral preenchido em degradê com
+deriva na rolagem (`animation-timeline: view()`), varredura especular
+cruzando cada quadro de vídeo, foco seguindo o cursor e lustro nos botões.
+As regras base são as do escuro; o bloco do claro só troca cor, alfa e
+mistura.
+
+O escuro tem três camadas a mais, que no branco não funcionam: **feixe** de
+luz descendo do topo, **poeira de estrelas** em dois ritmos e **vinheta**
+fechando as bordas. Mais o **bloom** no botão de play, que só existe porque
+o fundo é escuro, e os orbes em `mix-blend-mode: screen`.
+
+Tudo em `translate`/`scale`/`opacity`, e o foco do cursor só escreve no
+estilo uma vez por quadro de animação.
 
 O véu escuro do quadro de vídeo só aparece quando há capa
 (`.video:has(img)`); sem capa ele viraria uma mancha cinza, então o rótulo
@@ -85,8 +92,10 @@ só precisa apontar para a raiz; para cair direto numa ferramenta, usar a
 ## Conferido antes de entregar
 
 - Sem rolagem lateral em 1280 e em 500 de largura.
-- Contraste medido **contra o fundo já iluminado** pelos brilhos: corpo
-  14,9:1, texto mudo 6,7:1, apagado 4,9:1, branco no botão azul 8,2:1.
+- Contraste medido em pixel do render, no ponto mais claro do fundo
+  (`#112857`, dentro do feixe): corpo 12,4:1, texto mudo 5,6:1,
+  azul-céu 6,7:1, branco no botão azul 8,2:1. No claro: corpo 14,9:1,
+  mudo 5,8:1, azul 7,8:1.
 - Com movimento reduzido ligado, tudo aparece — os blocos não dependem da
   animação de entrada para existir.
 - Capa, clique e player testados com um ID real: a capa carrega, o clique

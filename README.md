@@ -41,6 +41,28 @@ vídeo. Aqui a capa é só a imagem do próprio YouTube; o player entra no
 clique, por `youtube-nocookie.com`, já com `autoplay`. A capa tenta
 `maxresdefault` e cai para `hqdefault` quando o vídeo não tem a de alta.
 
+## As duas versões
+
+A mesma página serve os dois temas, pelo parâmetro de URL:
+
+| | Endereço |
+|---|---|
+| Escuro (padrão) | `/` |
+| Claro | `/?tema=claro` |
+
+Um script no `<head>` lê o parâmetro e marca `data-tema="claro"` no `<html>`
+antes do CSS pintar, então não pisca. O bloco `:root[data-tema="claro"]` no
+fim da folha troca a paleta e as poucas regras que precisam de mais que
+token.
+
+No claro, `--azul-claro` e `--azul-ceu` **não podem carregar texto**: dão
+3,1:1 e 2,0:1 sobre branco. Toda letra e todo ícone passam para `--azul`,
+que dá 8,2:1. É o motivo de metade das regras do bloco existir.
+
+Para fixar uma das versões, é só o pop-up apontar para o endereço dela. Para
+deixar o claro como padrão, trocar a condição do script para
+`t !== 'escuro'`.
+
 ## O link do pop-up
 
 A página funciona sozinha, aberta em aba nova. O pop-up da área de membros

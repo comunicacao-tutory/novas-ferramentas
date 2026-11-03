@@ -63,6 +63,19 @@ Para fixar uma das versões, é só o pop-up apontar para o endereço dela. Para
 deixar o claro como padrão, trocar a condição do script para
 `t !== 'escuro'`.
 
+O claro leva uma camada de efeito que o escuro não tem, porque fundo branco
+aguenta mais: malha de pontos com máscara radial, três orbes de cor
+desfocados em órbita lenta, vidro na barra, nas pílulas do índice e no
+fecho, numeral preenchido em degradê com deriva na rolagem
+(`animation-timeline: view()`), varredura especular cruzando cada quadro de
+vídeo, foco seguindo o cursor e lustro nos botões. Tudo em
+`translate`/`scale`/`opacity`, e o foco do cursor só escreve no estilo uma
+vez por quadro de animação.
+
+O véu escuro do quadro de vídeo só aparece quando há capa
+(`.video:has(img)`); sem capa ele viraria uma mancha cinza, então o rótulo
+fica escuro nesse estado.
+
 ## O link do pop-up
 
 A página funciona sozinha, aberta em aba nova. O pop-up da área de membros

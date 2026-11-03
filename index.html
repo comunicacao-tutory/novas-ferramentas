@@ -91,6 +91,10 @@
   @keyframes respira{0%,100%{transform:scale(1) translate3d(0,0,0)}
                      50%{transform:scale(1.06) translate3d(0,-1.5%,0)}}
 
+  /* camadas extras da atmosfera: so o tema claro as acende */
+  .malha,.orbes{display:none;}
+  .quadro .brilho,.quadro .foco{display:none;}
+
   /* ══ barra de progresso da leitura ══════════════════════ */
   .progresso{position:fixed;top:0;left:0;right:0;height:2px;z-index:40;
     transform-origin:0 50%;transform:scaleX(0);
@@ -355,11 +359,17 @@
     background:radial-gradient(closest-side,rgba(0,64,200,.26),transparent 72%);}
 
   :root[data-tema="claro"] .video{background:var(--azul-leve);}
-  /* o veu escuro inteiro suja o quadro claro: no tema claro ele
-     so escurece a tira de baixo, onde fica o rotulo branco */
-  :root[data-tema="claro"] .video .veu{
-    background:linear-gradient(180deg,rgba(10,10,16,0) 0%,rgba(10,10,16,0) 48%,
-                                      rgba(10,10,16,.34) 72%,rgba(10,10,16,.66) 100%);}
+  /* O veu existe pro rotulo branco ficar legivel sobre a capa.
+     Sem capa, ele vira uma mancha cinza no quadro claro: entao
+     so aparece quando ha imagem, e sem imagem o rotulo fica
+     escuro. */
+  :root[data-tema="claro"] .video .veu{background:none;}
+  :root[data-tema="claro"] .video:has(img) .veu{
+    background:linear-gradient(180deg,rgba(10,10,16,0) 0%,rgba(10,10,16,0) 46%,
+                                      rgba(10,10,16,.36) 72%,rgba(10,10,16,.7) 100%);}
+  :root[data-tema="claro"] .video:not(:has(img)) .rotulo{color:var(--texto);text-shadow:none;}
+  :root[data-tema="claro"] .video:not(:has(img)) .rotulo .tempo{
+    background:rgba(16,24,40,.07);color:var(--mudo);-webkit-backdrop-filter:none;backdrop-filter:none;}
 
   :root[data-tema="claro"] .video .reserva{
     background:
@@ -382,6 +392,135 @@
   :root[data-tema="claro"] footer .redes a:hover{color:var(--azul);background:var(--azul-leve);}
   :root[data-tema="claro"] footer a{color:var(--azul);}
 
+
+  /* ══ efeitos do tema claro ══════════════════════════════
+     Fundo branco aguenta mais camada que fundo escuro: aqui
+     entram malha, orbes, vidro, varredura e foco. Tudo em
+     translate/scale/opacity, que o compositor resolve. */
+
+  /* malha de pontos, apagando nas bordas */
+  :root[data-tema="claro"] .malha{display:block;position:absolute;inset:-8%;
+    background-image:radial-gradient(rgba(0,64,200,.18) 1px,transparent 1px);
+    background-size:26px 26px;
+    -webkit-mask-image:radial-gradient(130% 92% at 50% 8%,#000 0%,rgba(0,0,0,.5) 48%,transparent 78%);
+            mask-image:radial-gradient(130% 92% at 50% 8%,#000 0%,rgba(0,0,0,.5) 48%,transparent 78%);
+    animation:anda-malha 34s ease-in-out infinite;}
+  @keyframes anda-malha{0%,100%{translate:0 0}50%{translate:-26px -18px}}
+
+  /* orbes de cor, desfocados, em orbita lenta */
+  :root[data-tema="claro"] .orbes{display:block;position:absolute;inset:0;overflow:hidden;}
+  :root[data-tema="claro"] .orbes i{position:absolute;display:block;border-radius:50%;
+    filter:blur(72px);opacity:.5;will-change:transform;}
+  :root[data-tema="claro"] .orbes i:nth-child(1){width:46vw;height:46vw;left:-10vw;top:-8vw;
+    background:radial-gradient(closest-side,rgba(0,64,200,.46),transparent 70%);
+    animation:orbita-a 28s ease-in-out infinite;}
+  :root[data-tema="claro"] .orbes i:nth-child(2){width:40vw;height:40vw;right:-8vw;top:14vh;
+    background:radial-gradient(closest-side,rgba(56,189,248,.44),transparent 70%);
+    animation:orbita-b 34s ease-in-out infinite;}
+  :root[data-tema="claro"] .orbes i:nth-child(3){width:52vw;height:52vw;left:22vw;bottom:-18vw;
+    background:radial-gradient(closest-side,rgba(91,141,239,.38),transparent 70%);
+    animation:orbita-c 40s ease-in-out infinite;}
+  @keyframes orbita-a{0%,100%{translate:0 0;scale:1}50%{translate:7vw 5vh;scale:1.12}}
+  @keyframes orbita-b{0%,100%{translate:0 0;scale:1.08}50%{translate:-6vw 7vh;scale:.94}}
+  @keyframes orbita-c{0%,100%{translate:0 0;scale:1}50%{translate:-8vw -6vh;scale:1.14}}
+
+  /* vidro: so vale a pena onde a camada de baixo aparece */
+  :root[data-tema="claro"] .barra{background:rgba(255,255,255,.72);
+    -webkit-backdrop-filter:saturate(1.8) blur(18px);
+            backdrop-filter:saturate(1.8) blur(18px);}
+  :root[data-tema="claro"] .abertura .selo,
+  :root[data-tema="claro"] .indice a{
+    background:rgba(255,255,255,.62);
+    -webkit-backdrop-filter:saturate(1.7) blur(16px);
+            backdrop-filter:saturate(1.7) blur(16px);
+    border-color:rgba(255,255,255,.9);
+    box-shadow:0 14px 30px -22px rgba(16,24,40,.6),
+               inset 0 1px 0 rgba(255,255,255,.95);}
+  :root[data-tema="claro"] .indice a:hover{background:rgba(237,242,255,.82);
+    border-color:rgba(0,64,200,.35);}
+
+  /* numeral: preenchimento em degrade e deriva na rolagem */
+  :root[data-tema="claro"] .ferramenta .numeral{
+    -webkit-text-stroke:0;
+    background:linear-gradient(180deg,rgba(0,64,200,.20),rgba(0,64,200,.04) 70%,transparent);
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  @supports (animation-timeline:view()){
+    :root[data-tema="claro"] .ferramenta .numeral{
+      animation:deriva linear both;animation-timeline:view();
+      animation-range:entry 0% exit 100%;}
+    @keyframes deriva{from{translate:0 46px}to{translate:0 -46px}}
+  }
+
+  /* quadro: halo maior, anel de vidro e a borda viva mais rica */
+  :root[data-tema="claro"] .quadro{
+    box-shadow:0 44px 90px -46px rgba(10,30,90,.65),
+               0 8px 24px -16px rgba(16,24,40,.35);}
+  :root[data-tema="claro"] .quadro::after{inset:4%;
+    background:radial-gradient(closest-side,rgba(0,64,200,.34),transparent 72%);
+    filter:blur(56px);}
+  :root[data-tema="claro"] .quadro::before{
+    background:conic-gradient(from var(--ang),
+      rgba(16,24,40,.10)  0deg,
+      var(--azul)        58deg,
+      var(--azul-ceu)    92deg,
+      #FFFFFF           118deg,
+      var(--azul-claro) 146deg,
+      rgba(16,24,40,.10) 206deg,
+      rgba(16,24,40,.10) 360deg);}
+
+  /* varredura especular: uma faixa de luz cruzando o quadro */
+  :root[data-tema="claro"] .quadro .brilho{display:block;position:absolute;inset:1px;
+    border-radius:calc(var(--raio-g) - 1px);overflow:hidden;pointer-events:none;z-index:3;}
+  :root[data-tema="claro"] .quadro .brilho::after{content:"";position:absolute;
+    top:-70%;left:-45%;width:34%;height:240%;rotate:18deg;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.62),transparent);
+    animation:varre 7.5s cubic-bezier(.4,0,.2,1) infinite;}
+  @keyframes varre{0%{translate:-40% 0;opacity:0}
+                   8%{opacity:1}
+                   34%{translate:430% 0;opacity:0}
+                   100%{translate:430% 0;opacity:0}}
+
+  /* foco: acompanha o cursor, so no ponteiro fino */
+  :root[data-tema="claro"] .quadro .foco{display:block;position:absolute;inset:1px;
+    border-radius:calc(var(--raio-g) - 1px);pointer-events:none;z-index:4;
+    opacity:0;transition:opacity 320ms ease;
+    background:radial-gradient(240px 240px at var(--mx,50%) var(--my,50%),
+      rgba(255,255,255,.34),transparent 68%);}
+  @media (hover:hover) and (pointer:fine){
+    :root[data-tema="claro"] .quadro:hover .foco{opacity:1;}
+  }
+
+  /* brilho correndo na palavra do titulo */
+  :root[data-tema="claro"] .abertura h1 em{position:relative;}
+  :root[data-tema="claro"] .abertura h1 em::after{content:attr(data-texto);
+    position:absolute;left:0;top:0;
+    background:linear-gradient(100deg,transparent 36%,rgba(255,255,255,.92) 50%,transparent 64%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    background-size:260% 100%;
+    animation:lustra 5.5s ease-in-out infinite;}
+  @keyframes lustra{0%{background-position:150% 0}
+                    55%,100%{background-position:-70% 0}}
+
+  /* fecho: vidro com o mesmo anel vivo dos quadros */
+  :root[data-tema="claro"] .fecho{
+    background:rgba(255,255,255,.62);
+    -webkit-backdrop-filter:saturate(1.7) blur(20px);
+            backdrop-filter:saturate(1.7) blur(20px);
+    border-color:rgba(255,255,255,.9);
+    box-shadow:0 40px 84px -48px rgba(10,30,90,.6),
+               inset 0 1px 0 rgba(255,255,255,.95);}
+
+  /* botao com lustro na passagem do mouse */
+  :root[data-tema="claro"] .ferramenta .acao,
+  :root[data-tema="claro"] .fecho .acao{position:relative;overflow:hidden;}
+  :root[data-tema="claro"] .ferramenta .acao::after,
+  :root[data-tema="claro"] .fecho .acao::after{content:"";position:absolute;
+    top:-50%;left:-30%;width:28%;height:200%;rotate:18deg;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+    translate:-120% 0;transition:translate 680ms cubic-bezier(.3,0,.2,1);}
+  :root[data-tema="claro"] .ferramenta .acao:hover::after,
+  :root[data-tema="claro"] .fecho .acao:hover::after{translate:560% 0;}
+
   /* ══ movimento reduzido ═════════════════════════════════
      Zerar a duracao nao basta: o que aparece POR CAUSA da
      animacao precisa de estado final explicito aqui. */
@@ -391,15 +530,19 @@
       animation-iteration-count:1!important;
       transition-duration:.01ms!important;transition-delay:0s!important;}
     .surge{opacity:1!important;translate:0 0!important;}
-    .atmosfera .luz,.quadro::before,.video .play::before,.seta{
-      animation:none!important;}
+    .atmosfera .luz,.quadro::before,.video .play::before,.seta,
+    .malha,.orbes i,.quadro .brilho::after,.abertura h1 em::after,
+    .ferramenta .numeral{animation:none!important;}
+    .quadro .brilho,.quadro .foco{display:none!important;}
+    .ferramenta .numeral{translate:0 0!important;}
     .video:hover img{transform:none;}
     .ferramenta .acao:hover,.fecho .acao:hover,.indice a:hover{transform:none;}
   }
 
   /* ══ impressao ══════════════════════════════════════════ */
   @media print{
-    .atmosfera,.progresso,.barra,.seta,.indice,footer .redes,.video .play{display:none!important;}
+    .atmosfera,.progresso,.barra,.seta,.indice,footer .redes,.video .play,
+    .quadro .brilho,.quadro .foco{display:none!important;}
     html,body{background:#fff!important;color:#242424!important;}
     .ferramenta .numeral{display:none!important;}
     .ferramenta .grade{grid-template-columns:1fr!important;direction:ltr!important;}
@@ -411,7 +554,12 @@
 </head>
 <body>
 
-<div class="atmosfera" aria-hidden="true"><div class="luz"></div><div class="grao"></div></div>
+<div class="atmosfera" aria-hidden="true">
+  <div class="luz"></div>
+  <div class="malha"></div>
+  <div class="orbes"><i></i><i></i><i></i></div>
+  <div class="grao"></div>
+</div>
 <div class="progresso" aria-hidden="true"></div>
 
 <header class="barra">
@@ -432,7 +580,7 @@
     </span>
 
     <!-- TROCAR: titulo e frase de apoio -->
-    <h1 class="surge d1">Quatro ferramentas <em>novas</em> na Tutory</h1>
+    <h1 class="surge d1">Quatro ferramentas <em data-texto="novas">novas</em> na Tutory</h1>
     <p class="surge d2">Cada uma resolve uma parte do seu dia e está explicada em um vídeo
        curto. Veja na ordem ou vá direto na que interessa.</p>
 
@@ -482,6 +630,8 @@
           </span>
           <span class="rotulo">Nome da ferramenta 1 <span class="tempo">2:40</span></span>
         </button>
+        <span class="brilho" aria-hidden="true"></span>
+        <span class="foco" aria-hidden="true"></span>
       </div>
     </div>
   </section>
@@ -519,6 +669,8 @@
           </span>
           <span class="rotulo">Nome da ferramenta 2 <span class="tempo">3:05</span></span>
         </button>
+        <span class="brilho" aria-hidden="true"></span>
+        <span class="foco" aria-hidden="true"></span>
       </div>
     </div>
   </section>
@@ -556,6 +708,8 @@
           </span>
           <span class="rotulo">Nome da ferramenta 3 <span class="tempo">2:15</span></span>
         </button>
+        <span class="brilho" aria-hidden="true"></span>
+        <span class="foco" aria-hidden="true"></span>
       </div>
     </div>
   </section>
@@ -593,6 +747,8 @@
           </span>
           <span class="rotulo">Nome da ferramenta 4 <span class="tempo">3:30</span></span>
         </button>
+        <span class="brilho" aria-hidden="true"></span>
+        <span class="foco" aria-hidden="true"></span>
       </div>
     </div>
   </section>
@@ -682,6 +838,28 @@
       botao.appendChild(q);
     });
   });
+
+  /* ── foco que acompanha o cursor ──────────────────────────
+     Guarda a posicao e so escreve no proximo quadro, pra nao
+     mexer no estilo a cada evento de ponteiro. */
+  if (window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    Array.prototype.forEach.call(document.querySelectorAll('.quadro'), function (q) {
+      var x = 0, y = 0, marcado = false;
+
+      q.addEventListener('pointermove', function (e) {
+        var r = q.getBoundingClientRect();
+        x = ((e.clientX - r.left) / r.width) * 100;
+        y = ((e.clientY - r.top) / r.height) * 100;
+        if (marcado) { return; }
+        marcado = true;
+        requestAnimationFrame(function () {
+          marcado = false;
+          q.style.setProperty('--mx', x.toFixed(1) + '%');
+          q.style.setProperty('--my', y.toFixed(1) + '%');
+        });
+      });
+    });
+  }
 
   /* ── entrada por rolagem ──────────────────────────────────
      Sem rolagem nenhuma o conteudo ja tem de estar visivel,

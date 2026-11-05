@@ -296,15 +296,19 @@
   .video .reserva span{font-size:12px;font-weight:700;letter-spacing:.16em;
     text-transform:uppercase;color:var(--apagado);}
 
-  .video .play{position:absolute;left:50%;top:50%;translate:-50% -50%;
-    width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
-    background:rgba(0,64,200,.92);color:#fff;
-    box-shadow:0 18px 44px -14px rgba(0,64,200,.9);
+  /* A capa ja traz o titulo no meio, entao o botao fica no canto de
+     baixo a esquerda, que e area livre nas quatro artes. */
+  .video .play{position:absolute;left:20px;bottom:18px;
+    display:inline-flex;align-items:center;gap:11px;
+    min-height:52px;padding:0 22px;border-radius:999px;
+    background:rgba(0,64,200,.95);color:#fff;
+    font-size:14px;font-weight:700;letter-spacing:.005em;white-space:nowrap;
+    box-shadow:0 18px 44px -16px rgba(0,64,200,.9);
     transition:transform var(--t),background var(--t);}
-  .video .play svg{width:22px;height:22px;margin-left:3px;}
-  .video .play::before{content:"";position:absolute;inset:-10px;border-radius:50%;
+  .video .play svg{width:17px;height:17px;flex:none;}
+  .video .play::before{content:"";position:absolute;inset:-7px;border-radius:999px;
     border:1px solid rgba(56,189,248,.45);animation:anel 2.8s ease-out infinite;}
-  @keyframes anel{0%{transform:scale(.92);opacity:.9}100%{transform:scale(1.35);opacity:0}}
+  @keyframes anel{0%{transform:scale(.97);opacity:.85}100%{transform:scale(1.1);opacity:0}}
   .video:hover .play{transform:scale(1.07);background:#0B4BE0;}
 
   .video .rotulo{position:absolute;right:18px;bottom:20px;
@@ -709,13 +713,13 @@
                 data-video="6gtxeOMIINc"
                 data-titulo="Pop-up"
                 data-tempo="1:40"
-                aria-label="Assistir ao vídeo: Pop-up">
+                aria-label="Clique e assista o vídeo: Pop-up">
           <img class="capa" src="assets/capa/01-pop-up.webp" alt="Capa da aula: Pop-up"
                width="1280" height="720" decoding="async" loading="eager" fetchpriority="high">
           <div class="reserva"><span>Vídeo a definir</span></div>
           <div class="veu"></div>
           <span class="play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg> Clique e assista
           </span>
           <span class="rotulo"><span class="tempo">1:40</span></span>
         </button>
@@ -750,13 +754,13 @@
                 data-video="N0EyFEG0hro"
                 data-titulo="Caderno de Questões"
                 data-tempo="1:36"
-                aria-label="Assistir ao vídeo: Caderno de Questões">
+                aria-label="Clique e assista o vídeo: Caderno de Questões">
           <img class="capa" src="assets/capa/02-caderno-de-questoes.webp" alt="Capa da aula: Caderno de Questões"
                width="1280" height="720" decoding="async" loading="lazy">
           <div class="reserva"><span>Vídeo a definir</span></div>
           <div class="veu"></div>
           <span class="play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg> Clique e assista
           </span>
           <span class="rotulo"><span class="tempo">1:36</span></span>
         </button>
@@ -791,13 +795,13 @@
                 data-video="Ka0RSUm2Ir0"
                 data-titulo="FlashCards"
                 data-tempo="3:04"
-                aria-label="Assistir ao vídeo: FlashCards">
+                aria-label="Clique e assista o vídeo: FlashCards">
           <img class="capa" src="assets/capa/03-flashcards.webp" alt="Capa da aula: FlashCards"
                width="1280" height="720" decoding="async" loading="lazy">
           <div class="reserva"><span>Vídeo a definir</span></div>
           <div class="veu"></div>
           <span class="play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg> Clique e assista
           </span>
           <span class="rotulo"><span class="tempo">3:04</span></span>
         </button>
@@ -832,13 +836,13 @@
                 data-video="WZ1947BvghA"
                 data-titulo="Dashboard"
                 data-tempo="4:03"
-                aria-label="Assistir ao vídeo: Dashboard">
+                aria-label="Clique e assista o vídeo: Dashboard">
           <img class="capa" src="assets/capa/04-dashboard.webp" alt="Capa da aula: Dashboard"
                width="1280" height="720" decoding="async" loading="lazy">
           <div class="reserva"><span>Vídeo a definir</span></div>
           <div class="veu"></div>
           <span class="play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg> Clique e assista
           </span>
           <span class="rotulo"><span class="tempo">4:03</span></span>
         </button>

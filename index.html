@@ -244,6 +244,7 @@
   .ferramenta ul{margin-top:var(--s-3);display:grid;gap:12px;list-style:none;}
   .ferramenta li{display:flex;gap:11px;align-items:flex-start;font-size:15px;color:var(--texto);}
   .ferramenta li svg{flex:none;width:19px;height:19px;margin-top:2px;color:var(--azul-ceu);}
+  .ferramenta li b{font-weight:800;color:var(--azul-ceu);}
 
   .ferramenta .acao{margin-top:var(--s-4);display:inline-flex;align-items:center;
     justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:999px;
@@ -496,6 +497,7 @@
   :root[data-tema="claro"] .ferramenta .passo::after{
     background:linear-gradient(90deg,var(--azul),transparent);}
   :root[data-tema="claro"] .ferramenta li svg{color:var(--azul);}
+  :root[data-tema="claro"] .ferramenta li b{color:var(--azul);}
 
   :root[data-tema="claro"] .quadro{box-shadow:0 30px 64px -38px rgba(16,24,40,.6);}
   :root[data-tema="claro"] .quadro::before{
@@ -673,7 +675,7 @@
     <!-- TROCAR: titulo e frase de apoio -->
     <h1 class="surge d1">Quatro ferramentas <em data-texto="novas">novas</em> na Tutory Hub</h1>
     <p class="surge d2">Cada uma resolve uma parte do seu dia e está explicada em um
-       vídeo&nbsp;curto. Veja na ordem ou vá direto na que interessa.</p>
+       vídeo&nbsp;curto. Veja na ordem ou vá direto à que interessa.</p>
 
     <!-- TROCAR: os quatro nomes, iguais aos dos titulos abaixo -->
     <nav class="indice surge d2" aria-label="Atalhos para as ferramentas">
@@ -694,13 +696,12 @@
     <span class="numeral" aria-hidden="true">01</span>
     <div class="faixa grade">
       <div class="texto surge">
-        <span class="passo">Ferramenta 01</span>
+        <span class="passo">Recurso 01</span>
         <h2>Pop-up</h2>
-        <p class="linha">Uma linha dizendo o que ela resolve, no vocabulário de quem usa.</p>
+        <p class="linha">O recado importante que não se perde no meio de um grupo de WhatsApp.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O primeiro ganho concreto de quem usa.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O segundo, de preferência com número.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O terceiro, dizendo onde fica na plataforma.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> <span><b>Para você:</b> Avisos importantes de fácil acesso na plataforma!</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> <span><b>Para o seu aluno:</b> ele não perde atualizações, mudanças no edital nem prazo de entregas.</span></li>
         </ul>
         <a class="acao" href="https://lp.tutory.com.br/central-de-ajuda/tutory-hub-como-enviar-um-comunicado-pop-up-para-seus-alunos" target="_blank" rel="noopener"
            data-ferramenta="Pop-up">
@@ -736,13 +737,12 @@
     <span class="numeral" aria-hidden="true">02</span>
     <div class="faixa grade">
       <div class="texto surge">
-        <span class="passo">Ferramenta 02</span>
+        <span class="passo">Recurso 02</span>
         <h2>Caderno de Questões</h2>
-        <p class="linha">Uma linha dizendo o que ela resolve, no vocabulário de quem usa.</p>
+        <p class="linha">Seu aluno treina o que a prova dele cobra, sem sair da sua plataforma.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O primeiro ganho concreto de quem usa.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O segundo, de preferência com número.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O terceiro, dizendo onde fica na plataforma.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> <span><b>Para você:</b> monte cadernos do banco de questões da Tutory, filtrados por matéria, banca, cargo, ano, órgão e dificuldade, com até 500 questões.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> <span><b>Para o seu aluno:</b> ele deixa de garimpar questões avulsas ou em outro site e pratica exatamente o que precisa.</span></li>
         </ul>
         <a class="acao" href="https://lp.tutory.com.br/central-de-ajuda/como-criar-um-caderno-de-quest%C3%B5es-" target="_blank" rel="noopener"
            data-ferramenta="Caderno de Questões">
@@ -778,13 +778,12 @@
     <span class="numeral" aria-hidden="true">03</span>
     <div class="faixa grade">
       <div class="texto surge">
-        <span class="passo">Ferramenta 03</span>
+        <span class="passo">Recurso 03</span>
         <h2>FlashCards</h2>
-        <p class="linha">Uma linha dizendo o que ela resolve, no vocabulário de quem usa.</p>
+        <p class="linha">Aluno que revisa na hora certa sempre lembra.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O primeiro ganho concreto de quem usa.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O segundo, de preferência com número.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O terceiro, dizendo onde fica na plataforma.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> <span><b>Para você:</b> crie cards do zero ou a partir de uma questão do seu banco.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> <span><b>Para o seu aluno:</b> poucos minutos por dia e a revisão já está pronta. Ele vê a sequência de dias seguidos crescer, acompanha a taxa de acerto e ainda pode criar os próprios baralhos.</span></li>
         </ul>
         <a class="acao" href="https://lp.tutory.com.br/central-de-ajuda/como-criar-flashcards-para-seus-alunos" target="_blank" rel="noopener"
            data-ferramenta="FlashCards">
@@ -820,13 +819,12 @@
     <span class="numeral" aria-hidden="true">04</span>
     <div class="faixa grade">
       <div class="texto surge">
-        <span class="passo">Ferramenta 04</span>
+        <span class="passo">Recurso 04</span>
         <h2>Dashboard</h2>
-        <p class="linha">Uma linha dizendo o que ela resolve, no vocabulário de quem usa.</p>
+        <p class="linha">Vendas, alunos, produto e engajamento na mesma tela.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O primeiro ganho concreto de quem usa.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O segundo, de preferência com número.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> O terceiro, dizendo onde fica na plataforma.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> <span><b>Para você:</b> vendas dos últimos 30 dias por situação, carrinhos ativos e o saldo disponível para saque, tudo numa tela.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> <span>Com dados dos alunos ativos e engajamento dos cursos à sua vista, você percebe quem está esfriando e age antes de qualquer situação.</span></li>
         </ul>
         <!-- FALTA o link da central de ajuda do Dashboard. Enquanto
              nao vier, o botao fica fora: botao que nao leva a lugar
@@ -860,8 +858,8 @@
   <div class="faixa">
     <section class="fecho surge">
       <h2>Tudo isso já está liberado na sua conta</h2>
-      <p>Entre na plataforma e encontre as quatro no menu. Qualquer dúvida,
-         fale com a gente pelo suporte.</p>
+      <p>Entre na plataforma e encontre os quatro recursos no menu. Qualquer
+         dúvida, fale com nosso time pelo suporte.</p>
       <a class="acao" href="https://dash.plataformatutory.com.br/login"
          target="_blank" rel="noopener">Ir para a plataforma</a>
     </section>

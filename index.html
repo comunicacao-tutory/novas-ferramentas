@@ -691,7 +691,7 @@
 
       <div class="quadro surge d1">
         <button class="video" type="button"
-                data-video="ID_DO_VIDEO_1"
+                data-video="6gtxeOMIINc"
                 data-titulo="Pop-up"
                 data-tempo="1:40"
                 aria-label="Assistir ao vídeo: Pop-up">
@@ -730,7 +730,7 @@
 
       <div class="quadro surge d1">
         <button class="video" type="button"
-                data-video="ID_DO_VIDEO_2"
+                data-video="N0EyFEG0hro"
                 data-titulo="Caderno de Questões"
                 data-tempo="1:36"
                 aria-label="Assistir ao vídeo: Caderno de Questões">
@@ -769,7 +769,7 @@
 
       <div class="quadro surge d1">
         <button class="video" type="button"
-                data-video="ID_DO_VIDEO_3"
+                data-video="Ka0RSUm2Ir0"
                 data-titulo="FlashCards"
                 data-tempo="3:04"
                 aria-label="Assistir ao vídeo: FlashCards">
@@ -808,7 +808,7 @@
 
       <div class="quadro surge d1">
         <button class="video" type="button"
-                data-video="ID_DO_VIDEO_4"
+                data-video="WZ1947BvghA"
                 data-titulo="Dashboard"
                 data-tempo="4:03"
                 aria-label="Assistir ao vídeo: Dashboard">
@@ -885,9 +885,17 @@
       capa.width = 1280; capa.height = 720;
       capa.src = 'https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg';
       capa.onerror = function () {
-        if (capa.dataset.tentou) { capa.remove(); return; }
-        capa.dataset.tentou = '1';
-        capa.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+        if (!capa.dataset.tentou) {
+          capa.dataset.tentou = '1';
+          capa.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+          return;
+        }
+        /* Video publico ou nao listado sempre serve hqdefault. As duas
+           capas falharem quer dizer privado ou rascunho, e ai o player
+           so mostraria "video indisponivel": melhor manter a capa de
+           reserva e nao abrir nada. */
+        capa.remove();
+        botao.dataset.indisponivel = '1';
       };
       botao.insertBefore(capa, botao.firstChild);
     }
@@ -897,6 +905,7 @@
          ID for trocado depois que a pagina ja carregou */
       var agora = botao.getAttribute('data-video') || '';
       if (!agora || agora.indexOf('ID_DO_VIDEO') === 0) { return; }
+      if (botao.dataset.indisponivel) { return; }
       if (botao.dataset.aberto) { return; }
       botao.dataset.aberto = '1';
 
